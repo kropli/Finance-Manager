@@ -11,6 +11,6 @@ namespace Models
         public string Description { get; set; }
 
         [Column(TypeName = "money")]
-        public string IncomeAmount { get; set; }
+        public decimal IncomeAmount { get; set; }
     }
 }
