@@ -10,4 +10,10 @@
     <ProjectReference Include="..\DataBaseContext\DataBaseContext.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettingsExample.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
