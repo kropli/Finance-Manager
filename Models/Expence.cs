@@ -15,5 +15,7 @@ namespace Models
 
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }
+
+        public string Source { get; set; }
     }
 }
