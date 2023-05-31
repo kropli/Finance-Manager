@@ -3,6 +3,7 @@ using System;
 using DataBaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBaseContext.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230530200639_poles-renaming")]
+    partial class polesrenaming
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
@@ -29,7 +32,7 @@ namespace DataBaseContext.Migrations
                     b.Property<int>("CurrencyId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -38,7 +41,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Accounts", (string)null);
+                    b.ToTable("Accounts");
                 });
 
             modelBuilder.Entity("Models.Currency", b =>
@@ -53,7 +56,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Currencies", (string)null);
+                    b.ToTable("Currencies");
                 });
 
             modelBuilder.Entity("Models.Expence", b =>
@@ -62,7 +65,7 @@ namespace DataBaseContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AccountId")
+                    b.Property<int?>("AccountId")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Amount")
@@ -79,7 +82,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Expences", (string)null);
+                    b.ToTable("Expences");
                 });
 
             modelBuilder.Entity("Models.Income", b =>
@@ -88,7 +91,7 @@ namespace DataBaseContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AccountId")
+                    b.Property<int?>("AccountId")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Amount")
@@ -105,7 +108,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Incomes", (string)null);
+                    b.ToTable("Incomes");
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -124,7 +127,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Models.Account", b =>
@@ -135,37 +138,25 @@ namespace DataBaseContext.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.User", "User")
+                    b.HasOne("Models.User", null)
                         .WithMany("Accounts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Currency");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Models.Expence", b =>
                 {
-                    b.HasOne("Models.Account", "Account")
+                    b.HasOne("Models.Account", null)
                         .WithMany("Expences")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
+                        .HasForeignKey("AccountId");
                 });
 
             modelBuilder.Entity("Models.Income", b =>
                 {
-                    b.HasOne("Models.Account", "Account")
+                    b.HasOne("Models.Account", null)
                         .WithMany("Incomes")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
+                        .HasForeignKey("AccountId");
                 });
 
             modelBuilder.Entity("Models.Account", b =>

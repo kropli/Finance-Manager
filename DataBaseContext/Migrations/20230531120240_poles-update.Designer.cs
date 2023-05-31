@@ -3,6 +3,7 @@ using System;
 using DataBaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBaseContext.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230531120240_poles-update")]
+    partial class polesupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
@@ -38,7 +41,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Accounts", (string)null);
+                    b.ToTable("Accounts");
                 });
 
             modelBuilder.Entity("Models.Currency", b =>
@@ -53,7 +56,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Currencies", (string)null);
+                    b.ToTable("Currencies");
                 });
 
             modelBuilder.Entity("Models.Expence", b =>
@@ -79,7 +82,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Expences", (string)null);
+                    b.ToTable("Expences");
                 });
 
             modelBuilder.Entity("Models.Income", b =>
@@ -105,7 +108,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Incomes", (string)null);
+                    b.ToTable("Incomes");
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -124,7 +127,7 @@ namespace DataBaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Models.Account", b =>

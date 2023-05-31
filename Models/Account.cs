@@ -1,18 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SQLiteNetExtensions.Attributes;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
     public class Account
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
-        public Currency Currency { get; set; }
+        public int UserId { get; set; } 
+        public User User { get; set; }
+
+        public int CurrencyId { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal CurrencyAmount { get; set; }
+        public decimal Balance { get; set; }
+        
+        public List<Expence> Expences { get; set; }
 
-        List<Spending> Spendings { get; set; }
-
-        List<Income> Incomes { get; set; }
+        public List<Income> Incomes { get; set; }
     }
 }
