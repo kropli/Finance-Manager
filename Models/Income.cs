@@ -6,11 +6,14 @@ namespace Models
     {
         public int Id { get; set; }
 
+        public int AccountId { get; set; }
+        public Account Account { get; set; }
+
         public DateTime Date { get; set; }
 
         public string Description { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal IncomeAmount { get; set; }
+        public decimal Amount { get; set; }
     }
 }
