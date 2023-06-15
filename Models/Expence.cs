@@ -17,5 +17,7 @@ namespace Models
         public decimal Amount { get; set; }
 
         public string Source { get; set; }
+
+        public string Category { get; set; }
     }
 }
